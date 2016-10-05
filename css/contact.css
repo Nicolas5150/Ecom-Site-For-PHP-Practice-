@@ -205,12 +205,10 @@ nav ul li a{
 	-webkit-transition: opacity 400ms ease-in;
 	-moz-transition: opacity 400ms ease-in;
 	transition: opacity 400ms ease-in;
-	pointer-events: none;
 }
 
 .modalDialog:target {
 	opacity:1;
-	pointer-events: auto;
 }
 
 .modalDialog > div {

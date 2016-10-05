@@ -3,7 +3,7 @@
 <head>
   <!-- css and js scripting links -->
   <title> Ecom Store Website </title>
-  <link  rel= "stylesheet" type="text/css" href= "../css/product.css">
+  <link  rel= "stylesheet" type="text/css" href= "../css/product.css"/>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 <header>
   <div class="topHead">
     <div class="logo">
-      <img src="../images/logo.png" height="100px" width="500px" >
+      <img src="../images/logo.png" height="100" width="500" alt="Logo image"/>
     </div>
   </div>
 
@@ -48,7 +48,7 @@
       <ul>
         <li>
           <div class="img">
-            <img src="../images/high5.png"></a>
+            <img src="../images/high5.png" alt="High5 Surfboard">
           </div>
           <div class="info">
           <a class="title">High 5 </a>

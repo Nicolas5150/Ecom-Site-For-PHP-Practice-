@@ -3,7 +3,7 @@
 <head>
   <!-- css and js scripting links -->
   <title> Ecom Store Website </title>
-  <link  rel= "stylesheet" type="text/css" href= "../css/contact.css">
+  <link  rel= "stylesheet" type="text/css" href= "../css/contact.css"/>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 <header>
   <div class="topHead">
     <div class="logo">
-      <img src="../images/logo.png" height="100px" width="500px" >
+      <img src="../images/logo.png" height="100" width="500" alt="Logo image">
     </div>
   </div>
 

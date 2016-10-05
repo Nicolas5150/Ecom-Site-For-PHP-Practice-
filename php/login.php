@@ -3,17 +3,14 @@
 <head>
   <!-- css and js scripting links -->
   <title> Ecom Store Website </title>
-  <link  rel= "stylesheet" type="text/css" href= "../css/login.css">
-  <style>
-  .error {color: #FF0000;}
-  </style>
+  <link  rel= "stylesheet" type="text/css" href= "../css/login.css"/>
 </head>
 <body>
 <div class="container">
   <header>
     <div class="topHead">
       <div class="logo">
-        <img src="../images/logo.png" height="100px" width="500px" >
+        <img src="../images/logo.png" height="100" width="500" alt="Logo image"/>
       </div>
     </div>
 
@@ -47,8 +44,8 @@
       <br><a href="#openLoginModal" class="modalButton">Login</a><br><br><br>
       <div id="openLoginModal" class="modalDialog">
         <a href="#close" title="Close" class="close">X</a>
-    		<div id="loginDetails">
-          <form id="contact-form" name="contact-form" method="post" action="../php/login-processing.php">
+    		<div class="loginDetails">
+          <form class="contact-form" name="contact-form" method="post" action="../php/login-processing.php">
             <p>
               <label>Username:<br />
                 <input name="Username" type="text" id="Username" size="48" />
@@ -258,8 +255,8 @@ function test_input($data)
       <br><a href="#openSignupModal" class="modalButton">Signup</a><br>
       <div id="openSignupModal" class="modalDialog">
         <a href="#close" title="Close" class="close">X</a>
-        <div id="loginDetails">
-          <form id="contact-form" name="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+        <div class="loginDetails">
+          <form class="contact-form" name="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
               Username: <input type="text" name="username" size="15" value="<?php echo $username;?>">
               <span class="error">* <?php echo $usernameErr;?></span>
               <br><br>

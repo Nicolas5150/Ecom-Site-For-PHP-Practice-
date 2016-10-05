@@ -3,7 +3,7 @@
 <head>
   <!-- css and js scripting links -->
   <title> Ecom Store Website </title>
-  <link  rel= "stylesheet" type="text/css" href= "../css/ecom.css">
+  <link  rel= "stylesheet" type="text/css" href= "../css/ecom.css"/>
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 <header>
   <div class="topHead">
     <div class="logo">
-      <img src="../images/logo.png" height="100px" width="500px" >
+      <img src="../images/logo.png" height="100" width="500" alt="Logo image"/>
     </div>
   </div>
 
@@ -50,7 +50,7 @@
             <!--Item One -->
             <li>
               <div class="img"><a href="../php/product.php">
-                <img src="../images/high5.png"></a>
+                <img src="../images/high5.png" alt="High5 Surfboard"></a>
               </div>
               <div class="info">
               <a class="title" href="../php/product.php">High 5</a>
@@ -68,7 +68,7 @@
             <!--Item Two -->
             <li>
               <div class="img"><a href="#">
-                <img src="../images/peregrine.png"></a>
+                <img src="../images/peregrine.png" alt="Peregrine Surfboard"></a>
               </div>
               <div class="info">
               <a class="title" href="#">Peregrine </a>
@@ -86,7 +86,7 @@
             <!--Item Three -->
             <li>
               <div class="img"><a href="#">
-                <img src="../images/rocket9.png"></a>
+                <img src="../images/rocket9.png" alt="Rocket9 Surfboard"></a>
               </div>
               <div class="info">
               <a class="title" href="#">Rocket 9 </a>
@@ -104,7 +104,7 @@
             <!--Item Four -->
             <li>
               <div class="img"><a href="#">
-                <img src="../images/podMod.png"></a>
+                <img src="../images/podMod.png" alt="podMod Surfboard"></a>
               </div>
               <div class="info">
               <a class="title" href="#">Pod Mod </a>
@@ -130,7 +130,7 @@
             <!--Item One -->
             <li>
               <div class="img"><a href="#">
-                <img src="../images/twinfin.png" ></a>
+                <img src="../images/twinfin.png" alt="Twinfin Surfboard"></a>
               </div>
               <div class="info">
               <a class="title" href="#">Twinfin  </a>
@@ -147,7 +147,7 @@
             <!--Item two -->
             <li>
               <div class="img"><a href="#">
-                <img src="../images/zeus.png" ></a>
+                <img src="../images/zeus.png" alt="Zeus Surfboard"></a>
               </div>
               <div class="info">
               <a class="title" href="#">Zeus </a>

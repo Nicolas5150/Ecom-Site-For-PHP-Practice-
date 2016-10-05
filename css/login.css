@@ -122,20 +122,20 @@ nav ul li a{
 
 
 /* Contact Form */
-#contact-form
+.contact-form
 {
   font-size: 14px;
   text-align: left;
 }
 
-#contact-form #text
+.contact-form #text
 {
   font-size: 15px;
   color: black;
   padding-bottom: 35px;
 }
 
-#contact-form input
+.contact-form input
 {
   margin-bottom: 10px;
   opacity: .8;
@@ -214,10 +214,15 @@ nav ul li a{
   border-left: 1px solid #CCCCCC;
 }
 
-/* how to force the erros to the right */
-#contact-form .error{
+/* how to force the errors to the right */
+.error{
+  color: #FF0000;
+}
+
+.contact-form .error{
   text-align: right;
 }
+
 
 /* Media Queries */
 @media (max-width : 1100px){

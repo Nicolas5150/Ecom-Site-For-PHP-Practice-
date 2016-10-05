@@ -124,7 +124,7 @@ nav ul li a{
 
 #mainContent #leftSide ul li .img img{
   padding-top: 10px;
-  height: 300;
+  height: 300px;
   width: 100px;
 }
 
@@ -196,12 +196,10 @@ nav ul li a{
 	-webkit-transition: opacity 400ms ease-in;
 	-moz-transition: opacity 400ms ease-in;
 	transition: opacity 400ms ease-in;
-	pointer-events: none;
 }
 
 .modalDialog:target {
 	opacity:1;
-	pointer-events: auto;
 }
 
 .modalDialog > div {
