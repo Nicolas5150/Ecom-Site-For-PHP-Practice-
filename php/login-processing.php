@@ -17,13 +17,18 @@ if (isset($_POST['Username']))
 		//$_SESSION['loggedIn'] = 'YES';
 		//$_SESSION['username'] = 'dig3134user';
 
-		echo ("correct!");
 		header("Location: ../php/success.php");
 	}
 	else
 	{
-		header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/login.php#openLoginModal");
-		echo ("Something went wrong");
+		if(isset($_COOKIE['badLogin']))
+	  {
+	    $badLogin = $_COOKIE["badLogin"];
+	    $badLogin ++;
+			// Update cookie to keep track of bad logins and push hour back to start
+	    setcookie("badLogin", $badLogin, time() + (3600), '/');
+	  }
+		header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/login.php#errorLoginModal");
 	}
 }
 ?>

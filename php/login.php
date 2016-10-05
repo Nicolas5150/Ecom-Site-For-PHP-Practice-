@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<?php
+  // Has a cookie for bad logins been created
+  if(isset($_COOKIE['badLogin']))
+  {
+    $badLogin = $_COOKIE["badLogin"];
+    if ($badLogin >= 5){
+      header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/index.php");
+    }
+  }
+  else
+  {
+    // Set a one hour cookie to keep track of bad logins
+    $badLogin = 0;
+    setcookie("badLogin", $badLogin, time() + (3600), '/');
+  }
+ ?>
 <html>
 <head>
   <!-- css and js scripting links -->
@@ -48,17 +64,43 @@
           <form class="contact-form" name="contact-form" method="post" action="../php/login-processing.php">
             <p>
               <label>Username:<br />
-                <input name="Username" type="text" id="Username" size="48" />
+                <input name="Username" type="text" class="Username" size="48" />
               </label>
             </p>
             <p>
               <label>Pasword:<br />
-                <input name="Password" type="text" id="Password" size="48" />
+                <input name="Password" type="text" class="Password" size="48" />
               </label>
             </p>
             <p>
               <label>
-                <input name="button" type="submit" class="submit-button" id="button" value="Send" />
+                <input name="button" type="submit" class="submit-button" class="button" value="Send" />
+              </label>
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Error Login Section -->
+      <br><a href="#errorLoginModal"></a>
+      <div id="errorLoginModal" class="modalDialog">
+        <a href="#close" title="Close" class="close">X</a>
+    		<div class="loginDetails">
+          <form class="contact-form" name="contact-form" method="post" action="../php/login-processing.php">
+            <p>
+              <div class="centerErrorText">ERROR</br>The username or password is invalid</br></div>
+              <label>Username:<br />
+                <input name="Username" type="text" class="Username" size="48" />
+              </label>
+            </p>
+            <p>
+              <label>Pasword:<br />
+                <input name="Password" type="text" class="Password" size="48" />
+              </label>
+            </p>
+            <p>
+              <label>
+                <input name="button" type="submit" class="submit-button" class="button" value="Send" />
               </label>
             </p>
           </form>

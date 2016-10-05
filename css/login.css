@@ -223,6 +223,11 @@ nav ul li a{
   text-align: right;
 }
 
+.centerErrorText{
+  text-align: center;
+  color: #FF0000;
+}
+
 
 /* Media Queries */
 @media (max-width : 1100px){
