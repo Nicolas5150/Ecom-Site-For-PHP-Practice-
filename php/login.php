@@ -1,20 +1,4 @@
 <!DOCTYPE html>
-<?php
-  // Has a cookie for bad logins been created
-  if(isset($_COOKIE['badLogin']))
-  {
-    $badLogin = $_COOKIE["badLogin"];
-    if ($badLogin >= 5){
-      header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/index.php");
-    }
-  }
-  else
-  {
-    // Set a one hour cookie to keep track of bad logins
-    $badLogin = 0;
-    setcookie("badLogin", $badLogin, time() + (3600), '/');
-  }
- ?>
 <html>
 <head>
   <!-- css and js scripting links -->
@@ -57,7 +41,26 @@
     <div id="product" >
       <h3>Login &amp; Signup </h3>
       <!-- Login Section -->
-      <br><a href="#openLoginModal" class="modalButton">Login</a><br><br><br>
+      <?php
+        // check for 5 or more bad logins. If so disable the Login button
+        if(isset($_COOKIE['badLogin']))
+        {
+          $badLogin = $_COOKIE["badLogin"];
+          if ($badLogin <= 0){
+            echo "<br><a href=\"#openLoginModal\" class=\"modalButton disableLoginButton\">Login</a><br><br><br>";
+          }
+          else {
+            echo "<br><a href=\"#openLoginModal\" class=\"modalButton\">Login</a><br><br><br>";
+          }
+        }
+        else
+        {
+          // Set a one hour cookie to keep track of bad logins
+          $badLogin = 5;
+          setcookie("badLogin", $badLogin, time() + (3600), '/');
+          echo "<br><a href=\"#openLoginModal\" class=\"modalButton\">Login</a><br><br><br>";
+        }
+       ?>
       <div id="openLoginModal" class="modalDialog">
         <a href="#close" title="Close" class="close">X</a>
     		<div class="loginDetails">
@@ -88,7 +91,11 @@
     		<div class="loginDetails">
           <form class="contact-form" name="contact-form" method="post" action="../php/login-processing.php">
             <p>
-              <div class="centerErrorText">ERROR</br>The username or password is invalid</br></div>
+              <!-- Login in error countdown notice -->
+              <div class="centerErrorText">ERROR</br>The username or password is invalid</br>
+                <p>You have <?php echo $badLogin = $_COOKIE["badLogin"];?> try(s) left</br>
+                  Once all submission are used, you must wait one hour before trying again.</br>
+                    An email will also be sent to the user for security / notification purposes</p></div>
               <label>Username:<br />
                 <input name="Username" type="text" class="Username" size="48" />
               </label>

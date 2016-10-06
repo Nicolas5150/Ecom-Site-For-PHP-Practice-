@@ -9,6 +9,7 @@ if (isset($_POST['Username']))
 	$databaseUsername = "dig3134user";
 	$databasePassword = "dig3134pass";
 
+	// Log user in with passing credientals
   if($usernameField == $databaseUsername && $passwordField == $databasePassword)
   {
 		// Creating cookies for valid login
@@ -19,16 +20,23 @@ if (isset($_POST['Username']))
 
 		header("Location: ../php/success.php");
 	}
+	// Begin subtracting trys from user login attempts
 	else
 	{
 		if(isset($_COOKIE['badLogin']))
 	  {
 	    $badLogin = $_COOKIE["badLogin"];
-	    $badLogin ++;
+	    $badLogin --;
 			// Update cookie to keep track of bad logins and push hour back to start
 	    setcookie("badLogin", $badLogin, time() + (3600), '/');
 	  }
-		header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/login.php#errorLoginModal");
+		if ($badLogin == 0){
+			include '../php/badLoginEmailNotify.php';
+			header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/login.php");
+		}
+		else{
+			header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/login.php#errorLoginModal");
+		}
 	}
 }
 ?>
