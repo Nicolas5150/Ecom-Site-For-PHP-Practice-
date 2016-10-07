@@ -32,8 +32,39 @@ if($nameField == $foundUsername )
 			}
 	    return 'Other';
 	}
-	// Usage:
+
+	// Function to get the OS being used
+	function get_system_name($user_agent)
+	{
+		// Include and instantiate the class.
+		require_once 'Mobile_Detect.php';
+		$detect = new Mobile_Detect;
+		// Check for a specific platform with the help of the magic methods:
+		if($detect->isiOS()){
+ 			return 'iOS';
+		}
+		elseif($detect->isAndroidOS()){
+			return 'Android';
+		}
+		elseif (preg_match('/linux/i', $user_agent)) {
+			return 'Linux';
+		 }
+		elseif (preg_match('/macintosh|mac os x/i', $user_agent)) {
+			return 'Mac OS';
+		 }
+		elseif (preg_match('/windows|win32/i', $user_agent)) {
+			return 'Windows';
+		 }
+		else{
+			require 'Not Available';
+		 }
+ 	}
+
+	// Call the function to store what browser is being used:
 	$browserType = get_browser_name($_SERVER['HTTP_USER_AGENT']);
+
+	// Call the function to store what OS is being used:
+	$systemType = get_system_name($_SERVER['HTTP_USER_AGENT']);
 
 	// Subject and Email Variables
 	$emailSubject = 'Multiple Attempts Logging Into Account';
@@ -48,6 +79,7 @@ if($nameField == $foundUsername )
 Dear: $nameField <br><br>
 $messageField <br><br>
 Browser: $browserType <br>
+System: $systemType <br>
 EOD;
 
 	$headers = "From: $emailField\r\n";
