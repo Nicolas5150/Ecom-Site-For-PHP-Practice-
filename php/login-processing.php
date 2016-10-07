@@ -31,7 +31,7 @@ if (isset($_POST['Username']))
 	    setcookie("badLogin", $badLogin, time() + (3600), '/');
 	  }
 		if ($badLogin == 0){
-			include '../php/badLoginEmailNotify.php';
+			include '../php/badLogin.php';
 			header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/login.php");
 		}
 		else{

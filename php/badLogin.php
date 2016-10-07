@@ -9,18 +9,45 @@ $foundUserEmail = "Nicolas5150@gmail.com";
 // Only send email if a user is found in the database
 if($nameField == $foundUsername )
 {
-// Subject and Email Variables
+	// Function to get the browser being used
+	function get_browser_name($user_agent)
+	{
+	    if (strpos($user_agent, 'Chrome')){
+				return 'Chrome';
+			}
+			elseif (strpos($user_agent, 'Edge')){
+				return 'Edge';
+			}
+			elseif (strpos($user_agent, 'Firefox')){
+				return 'Firefox';
+			}
+			elseif (strpos($user_agent, 'MSIE') || strpos($user_agent, 'Trident/7')){
+				return 'Internet Explorer';
+			}
+			elseif (strpos($user_agent, 'Opera') || strpos($user_agent, 'OPR/')){
+				return 'Opera';
+			}
+	    elseif (strpos($user_agent, 'Safari')){
+				return 'Safari';
+			}
+	    return 'Other';
+	}
+	// Usage:
+	$browserType = get_browser_name($_SERVER['HTTP_USER_AGENT']);
+
+	// Subject and Email Variables
 	$emailSubject = 'Multiple Attempts Logging Into Account';
 
-// Grab items from the contact form html page
+	// Grab items from the contact form html page
 	$emailField = $foundUserEmail;
-	$messageField = "5 unsuccessful attempts were processed in trying to log
-  into your account. This message is to notify you for your account security";
+	$messageField = "This message is to notify you for your account security </br>
+	5 unsuccessful attempts were processed in trying to log into your account. ";
 
 	$body = <<<EOD
 <br><hr><br>
-Userame: $nameField <br><br>
-Message: $messageField <br>
+Dear: $nameField <br><br>
+$messageField <br><br>
+Browser: $browserType <br>
 EOD;
 
 	$headers = "From: $emailField\r\n";
