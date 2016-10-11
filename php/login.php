@@ -23,13 +23,11 @@
         <?php
         // If the user is logged in show logout option and cart via external php
         // else just show login option on nav bar.
-        if(isset($_COOKIE['loggedIn']))
-        {
+        if(isset($_COOKIE['loggedIn'])){
           // This includes the logout and cart nav sections and its restylings.
           include '../php/logoutAndCart.php';
         }
-        else
-        {
+        else{
           echo "<li><a href=\"../php/login.php\">Login</a></li>";
         }
         ?>
@@ -53,9 +51,9 @@
             echo "<br><a href=\"#openLoginModal\" class=\"modalButton\">Login</a><br><br><br>";
           }
         }
+        // Set a one hour cookie to keep track of bad logins
         else
         {
-          // Set a one hour cookie to keep track of bad logins
           $badLogin = 5;
           setcookie("badLogin", $badLogin, time() + (3600), '/');
           echo "<br><a href=\"#openLoginModal\" class=\"modalButton\">Login</a><br><br><br>";
@@ -66,36 +64,19 @@
     		<div class="loginDetails">
           <form class="contact-form" name="contact-form" method="post" action="../php/login-processing.php">
             <p>
-              <label>Username:<br />
-                <input name="Username" type="text" class="Username" size="48" />
-              </label>
-            </p>
-            <p>
-              <label>Password:<br />
-                <input name="Password" type="text" class="Password" size="48" />
-              </label>
-            </p>
-            <p>
-              <label>
-                <input name="button" type="submit" class="submit-button" class="button" value="Send" />
-              </label>
-            </p>
-          </form>
-        </div>
-      </div>
-
-      <!-- Error Login Section -->
-      <br><a href="#errorLoginModal"></a>
-      <div id="errorLoginModal" class="modalDialog">
-        <a href="#close" title="Close" class="close">X</a>
-    		<div class="loginDetails">
-          <form class="contact-form" name="contact-form" method="post" action="../php/login-processing.php">
-            <p>
               <!-- Login in error countdown notice -->
-              <div class="centerErrorText">ERROR</br>The username or password is invalid</br>
-                <p>You have <?php echo $badLogin = $_COOKIE["badLogin"];?> try(s) left</br>
-                  Once all submission are used, you must wait one hour before trying again.</br>
-                    An email will also be sent to the user for security / notification purposes</p></div>
+              <?php
+              $badLogin = $_COOKIE["badLogin"];
+              if($badLogin != 5 && $badLogin > 0)
+              {
+                echo "<div class=\"centerErrorText\">ERROR</br>The username or password is invalid</br>
+                  <p>You have " .$badLogin. " try(s) left</br>
+                    Once all submission are used, you must wait one hour before trying again.</br>
+                      An email will also be sent to the user for security / notification purposes
+                  </p>
+                </div>";
+              }
+              ?>
               <label>Username:<br />
                 <input type="text" name="Username" class="Username" size="48" />
               </label>
@@ -306,34 +287,34 @@ function test_input($data)
         <a href="#close" title="Close" class="close">X</a>
         <div class="loginDetails">
           <form class="contact-form" name="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-              Username: <input type="text" name="username" size="15" value="<?php echo $username;?>">
+              Username: <input type="text" name="username" size="15" maxlength="30" value="<?php echo $username;?>">
               <span class="error">* <?php echo $usernameErr;?></span>
               <br><br>
-              First Name: <input type="text" name="firstName" size="15" value="<?php echo $firstName;?>">
+              First Name: <input type="text" name="firstName" size="15" maxlength="30" value="<?php echo $firstName;?>">
               <span class="error">* <?php echo $firstNameErr;?></span>
               <br><br>
-              Last Name: <input type="text" name="lastName" size="15" value="<?php echo $lastName;?>">
+              Last Name: <input type="text" name="lastName" size="15" maxlength="30" value="<?php echo $lastName;?>">
               <span class="error">* <?php echo $lastNameErr;?></span>
               <br><br>
-              E-mail: <input type="text" name="email" value="<?php echo $email;?>">
+              E-mail: <input type="text" name="email" maxlength="40" value="<?php echo $email;?>">
               <span class="error">* <?php echo $emailErr;?></span>
               <br><br>
-              Password: <input type="text" name="password" value="<?php echo $password;?>">
+              Password: <input type="text" name="password" maxlength="30" value="<?php echo $password;?>">
               <span class="error">* <?php echo $passwordErr;?></span>
               <br><br>
-              Phone Number: <input type="text" name="phoneNumber" value="<?php echo $phoneNumber;?>">
+              Phone Number: <input type="text" name="phoneNumber" maxlength="11" value="<?php echo $phoneNumber;?>">
               <span class="error">* <?php echo $phoneNumberErr;?></span>
               <br><br>
-              Street Address: <input type="text" name="streetAddress" value="<?php echo $streetAddress;?>">
+              Street Address: <input type="text" name="streetAddress" maxlength="40" value="<?php echo $streetAddress;?>">
               <span class="error">* <?php echo $streetAddressErr;?></span>
               <br><br>
-              City: <input type="text" name="cityName" value="<?php echo $cityName;?>">
+              City: <input type="text" name="cityName" maxlength="60" value="<?php echo $cityName;?>">
               <span class="error">* <?php echo $cityNameErr;?></span>
               <br><br>
-              Zip Code: <input type="text" name="zipNumber" value="<?php echo $zipNumber;?>">
+              Zip Code: <input type="text" name="zipNumber" maxlength="12" value="<?php echo $zipNumber;?>">
               <span class="error">* <?php echo $zipNumberErr;?></span>
               <br><br>
-              State Abbreviation: <input type="text" name="stateLetters" value="<?php echo $stateLetters;?>">
+              State Abbreviation: <input type="text" name="stateLetters" maxlength="2" value="<?php echo $stateLetters;?>">
               <span class="error">* <?php echo $stateLettersErr;?></span>
               <br><br>
               <input type="submit" name="submit" value="Submit">
