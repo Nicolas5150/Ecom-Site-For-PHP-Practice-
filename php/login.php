@@ -71,7 +71,7 @@
               </label>
             </p>
             <p>
-              <label>Pasword:<br />
+              <label>Password:<br />
                 <input name="Password" type="text" class="Password" size="48" />
               </label>
             </p>
@@ -97,17 +97,17 @@
                   Once all submission are used, you must wait one hour before trying again.</br>
                     An email will also be sent to the user for security / notification purposes</p></div>
               <label>Username:<br />
-                <input name="Username" type="text" class="Username" size="48" />
+                <input type="text" name="Username" class="Username" size="48" />
               </label>
             </p>
             <p>
-              <label>Pasword:<br />
-                <input name="Password" type="text" class="Password" size="48" />
+              <label>Password:<br />
+                <input type="password" name="Password" class="Password" size="48" />
               </label>
             </p>
             <p>
               <label>
-                <input name="button" type="submit" class="submit-button" class="button" value="Send" />
+                <input type="submit" name="button" class="submit-button" class="button" value="Send" />
               </label>
             </p>
           </form>
