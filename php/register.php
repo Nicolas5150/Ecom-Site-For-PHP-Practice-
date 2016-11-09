@@ -27,7 +27,6 @@ if($result)
 
     // Start a new session bassed off the users new account
     $_SESSION['userDetails'] = array();
-    $_SESSION['userDetails'][] = "loggedIn";
     $_SESSION['userDetails'][] = $user["username"];
     $_SESSION['userDetails'][] = $user["email"];
     $_SESSION['userDetails'][] = $user["firstName"];

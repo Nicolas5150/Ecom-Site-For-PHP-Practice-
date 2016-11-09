@@ -3,8 +3,10 @@
 $nameField = $_POST['Username'];
 // Simulating the database in which it finds the email associated to the username
 // CODE WILL BE SWAPPED TO SEARCH DB FOR A MATCHING USER and associated email
-$foundUsername = "dig3134user";
-$foundUserEmail = "Nicolas5150@gmail.com";
+
+
+$foundUsername = $user["username"];
+$foundUserEmail = $user["email"];
 
 // Only send email if a user is found in the database
 if($nameField == $foundUsername )

@@ -1,27 +1,50 @@
 <?php
+session_start();
 if (!empty($_POST['Username']) && !empty($_POST['Password']))
 {
 	// Grab items from the contact form html page
 	$usernameField = test_input($_POST['Username']);
 	$passwordField = test_input($_POST['Password']);
 
-	// Simulated database retrieval
-	$databaseUsername = "dig3134user";
-	$databasePassword = "dig3134pass";
+	// Database retrieval
+	// Secure password using sha1 encryption function
+	$securedPassword = sha1($passwordField);
+
+	// 2 Build Connection
+	// Build connection in secure way
+	$file = parse_ini_file("waiting.ini");
+
+	// Store vars from file
+	$host = trim($file["dbHost"]);
+	$user = trim($file["dbUser"]);
+	$pass = trim($file["dbPass"]);
+	$name = trim($file["dbName"]);
+
+	require("Secure/access.php");
+	$access = new access($host, $user, $pass, $name);
+	$access->connect();
+
+	// Get user from access.php function
+	$user = $access->getUser($usernameField);
 
 	// Check to make sure cookie has been set
 	if(isset($_COOKIE['badLogin']))
 	{
 		$badLogin = $_COOKIE["badLogin"];
 		// Log user in with passing credientals and enough trys left
-	  if($usernameField == $databaseUsername && $passwordField == $databasePassword && $badLogin > 0)
+	  if($usernameField == $user["username"] && $securedPassword == $user["securedPassword"] && $badLogin > 0)
 	  {
-			// Creating cookies for valid login and reset bad cookie counter
-			setcookie('loggedIn');
-			setcookie("databaseUsername", $databaseUsername);
+			// Reset bad cookie counter
 			$badLogin = 5;
 			setcookie("badLogin", $badLogin, time() + (3600), '/');
+			// Start a new session bassed off the users new account
+			$_SESSION['userDetails'] = array();
+			$_SESSION['userDetails'][] = $user["username"];
+			$_SESSION['userDetails'][] = $user["email"];
+			$_SESSION['userDetails'][] = $user["firstName"];
+			$_SESSION['userDetails'][] = $user["lastName"];
 			header("Location: ../php/success.php");
+			exit();
 		}
 		// Begin subtracting trys from user login attempts
 		else
