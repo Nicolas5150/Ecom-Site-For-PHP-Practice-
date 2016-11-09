@@ -1,6 +1,5 @@
 <?php
-
-echo "<li><a href=\"#\">".$_COOKIE["databaseUsername"]." cart</a></li>";
+echo "<li><a href=\"#\">".$_SESSION['userDetails'][1]." cart</a></li>";
 
 echo "
   <li><a href=\"#openLoginModal\" class=\"modalButton\">Logout</a></li>

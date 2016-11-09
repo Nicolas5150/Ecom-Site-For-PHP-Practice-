@@ -26,7 +26,7 @@
       <?php
       // If the user is logged in show logout option and cart via external php
       // else just show login option on nav bar.
-      if(isset($_COOKIE['loggedIn'])){
+      if(isset($_SESSION['userDetails'])){
         // This includes the logout and cart nav sections and its restylings.
         include '../php/logoutAndCart.php';
       }
