@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start(); ?>
 <html>
 <head>
   <!-- css and js scripting links -->
@@ -66,15 +67,18 @@
             <p>
               <!-- Login in error countdown notice -->
               <?php
-              $badLogin = $_COOKIE["badLogin"];
-              if($badLogin != 5 && $badLogin > 0)
+              if(isset($_COOKIE['badLogin']))
               {
-                echo "<div class=\"centerErrorText\">ERROR</br>The username or password is invalid</br>
-                  <p>You have " .$badLogin. " try(s) left</br>
-                    Once all submission are used, you must wait one hour before trying again.</br>
-                      An email will also be sent to the user for security / notification purposes
-                  </p>
-                </div>";
+                $badLogin = $_COOKIE["badLogin"];
+                if($badLogin < 5 && $badLogin > 0)
+                {
+                  echo "<div class=\"centerErrorText\">ERROR</br>The username or password is invalid</br>
+                    <p>You have " .$badLogin. " try(s) left</br>
+                      Once all submission are used, you must wait one hour before trying again.</br>
+                        An email will also be sent to the user for security / notification purposes
+                    </p>
+                  </div>";
+                }
               }
               ?>
               <label>Username:<br />
@@ -262,10 +266,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
           $streetAddressErr == "" && $cityNameErr == "" && $zipNumberErr == "" &&
             $stateLettersErr == "")
   {
-    // Create new cookie for users login status and then send to success page
+    require("register.php");
+    // Create new cookie for users login, bad cookie count and send to success page
     setcookie('loggedIn');
 		setcookie("databaseUsername", $username);
     header("Location: ../php/success.php");
+    $badLogin = 5;
+    setcookie("badLogin", $badLogin, time() + (3600), '/');
   }
 }
 
