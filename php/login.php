@@ -123,8 +123,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   {
     $username = test_input($_POST["username"]);
     // check if name only contains letters and whitespace
-    if (!preg_match("/^[a-zA-Z]*$/",$username)){
-      $usernameErr = "Only letters, no spaces";
+    if (!preg_match("/^[a-z0-9]*$/",$username)){
+      $usernameErr = "No spaces or caps";
     }
   }
   // First name validation
@@ -182,9 +182,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
   // Phone number validation
   if (!empty($_POST["phoneNumber"]))
   {
-    // Strip of punctuation and remove spaces
     $phoneNumber = preg_replace('/[^0-9.]+/', '', $_POST["phoneNumber"]);
-
     if (strlen($phoneNumber) != 10){
       $phoneNumberErr = "Phone number must be 10 numbers";
     }
@@ -269,12 +267,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $stateLettersErr == "")
   {
     require("register.php");
-    // Create new cookie for users login, bad cookie count and send to success page
-    setcookie('loggedIn');
-		setcookie("databaseUsername", $username);
-    header("Location: ../php/success.php");
-    $badLogin = 5;
-    setcookie("badLogin", $badLogin, time() + (3600), '/');
+    $usernameErr = "Username is taken";
   }
 }
 

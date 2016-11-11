@@ -1,5 +1,4 @@
 <?php
-session_start();
 // Secure password using sha1 encryption function
 $securedPassword = sha1($password);
 
@@ -17,41 +16,41 @@ require("Secure/access.php");
 $access = new access($host, $user, $pass, $name);
 $access->connect();
 
-// 3 Insert user info into database
-$result = $access->registerUser($username, $firstName, $lastName, $email ,$securedPassword, $phoneNumber, $streetAddress, $cityName, $zipNumber, $stateLetters, $numberAndStreet);
+// Check if user is in database before entering the registraion
+$user = $access->getUser($username);
+if ($username == $user["username"]){
+  $usernameErr == "Username Taken";
+}
 
-if($result)
+else
 {
-    // Get user from access.php function
-    $user = $access->getUser($username);
+  // 3 Insert user info into database
+  $result = $access->registerUser($username, $firstName, $lastName, $email ,$securedPassword, $phoneNumber, $streetAddress, $cityName, $zipNumber, $stateLetters, $numberAndStreet);
 
-    // Start a new session bassed off the users new account
-    $_SESSION['userDetails'] = array();
-    $_SESSION['userDetails'][] = $user["username"];
-    $_SESSION['userDetails'][] = $user["email"];
-    $_SESSION['userDetails'][] = $user["firstName"];
-    $_SESSION['userDetails'][] = $user["lastName"];
+  if($result)
+  {
+      // Get user from access.php function
+      $user = $access->getUser($username);
 
-    /* Testing Purpose
-    foreach($_SESSION['userDetails'] as $item)
-    {
-      echo $item;
-    }
-    */
+      // Start a new session bassed off the users new account
+      $_SESSION['userDetails'] = array();
+      $_SESSION['userDetails'][] = $user["username"];
+      $_SESSION['userDetails'][] = $user["email"];
+      $_SESSION['userDetails'][] = $user["firstName"];
+      $_SESSION['userDetails'][] = $user["lastName"];
+
+      // Set bad cookie count to 0 and send to success page
+      $badLogin = 5;
+      setcookie("badLogin", $badLogin, time() + (3600), '/');
+      header("Location: ../php/success.php");
+  }
+
+  else{
+      $returnArray["status"] = "400";
+      $returnArray["message"] = "Data not passing register user function";
+  }
 }
-
-else{
-    $returnArray["status"] = "400";
-    $returnArray["message"] = "Data not passing register user function";
-}
-
-// 4 Close connection
-$access->dissconnect();
-
-// TURN BACK ON FOR IOS LATER
-// 5 Json data
-// echo json_encode($returnArray);
-
-header("Location: index.php");
+  // 4 Close connection
+  $access->dissconnect();
 return;
 ?>
