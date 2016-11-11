@@ -43,6 +43,8 @@ if (!empty($_POST['Username']) && !empty($_POST['Password']))
 			$_SESSION['userDetails'][] = $user["email"];
 			$_SESSION['userDetails'][] = $user["firstName"];
 			$_SESSION['userDetails'][] = $user["lastName"];
+			// 4 Close connection
+			$access->dissconnect();
 			header("Location: ../php/success.php");
 			exit();
 		}
@@ -55,6 +57,9 @@ if (!empty($_POST['Username']) && !empty($_POST['Password']))
 			if ($badLogin <= 0)
 			{
 				include '../php/badLogin.php';
+
+				// 4 Close connection
+				$access->dissconnect();
 				header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/login.php");
 				exit();
 			}
@@ -62,6 +67,8 @@ if (!empty($_POST['Username']) && !empty($_POST['Password']))
 	}
 }
 // Gets here if one of the boxes are unfilled or if less than 5 attempts are made
+// 4 Close connection
+$access->dissconnect();
 header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/login.php#openLoginModal");
 
 

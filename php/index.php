@@ -130,10 +130,10 @@
             <!--Content goes here -->
             <!--Item One -->
             <li>
-              <div class="img"><a href="#">
-                <img src="../images/twinfin.png" alt="Twinfin Surfboard"></a>
-              </div>
               <div class="info">
+                <div class="img"><a href="#">
+                  <img src="../images/twinfin.png" alt="Twinfin Surfboard"></a>
+                </div>
               <a class="title" href="#">Twinfin  </a>
               <p> Short Description - Surfboard </p>
               <div class="price">
@@ -142,15 +142,16 @@
               </div>
               <div class="actions">
                 <a href="#">Details</a>
+                <a href="#">Out of stock</a>
               </div>
               </div>
             </li>
             <!--Item two -->
             <li>
-              <div class="img"><a href="#">
-                <img src="../images/zeus.png" alt="Zeus Surfboard"></a>
-              </div>
               <div class="info">
+                <div class="img"><a href="#">
+                  <img src="../images/zeus.png" alt="Zeus Surfboard"></a>
+                </div>
               <a class="title" href="#">Zeus </a>
               <p> Short Description - Surfboard </p>
               <div class="price">
@@ -159,6 +160,7 @@
               </div>
               <div class="actions">
                 <a href="#">Details</a>
+                <a href="#">Out of stock</a>
               </div>
               </div>
             </li>

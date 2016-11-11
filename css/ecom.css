@@ -24,8 +24,6 @@ img{
   position: relative;
   text-align: left;
   width: 85%;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 header{
@@ -88,7 +86,7 @@ nav ul li a{
 
 #rightSide{
   margin-left: 0;
-  width: 30%;
+  width: 25%;
   float: right;
 }
 
@@ -110,7 +108,7 @@ nav ul li a{
 
 #leftSide{
   float: left;
-  width: 60%;
+  width: 70%;
 }
 
 #leftSide ul li{
@@ -205,6 +203,10 @@ nav ul li a{
   float: left;
 }
 
+#mainContent #rightSide ul li .info .actions a:first-child{
+  float: left;
+}
+
 #mainContent #rightSide ul li .info .actions a:first-child:hover{
   color: black;
 }
@@ -217,28 +219,31 @@ nav ul li a{
 .modalDialog {
 	position: absolute;
 	font-family: Arial, Helvetica, sans-serif;
-	top: 220px;
-	right: 220px;
-	bottom: 220px;
-	left: 220px;
+	margin-left: auto;
+  margin-right: auto;
+  padding-left: 5%;
 	z-index: 99999;
 	opacity:0;
 	-webkit-transition: opacity 400ms ease-in;
 	-moz-transition: opacity 400ms ease-in;
 	transition: opacity 400ms ease-in;
+	pointer-events: none;
+  padding-bottom: 10%;
 }
 
 .modalDialog:target {
 	opacity:1;
+	pointer-events: auto;
 }
 
 .modalDialog > div {
-	width: 400px;
-	position: relative;
-	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
 	border-radius: 10px;
 	background-color: white;
+}
+
+.modalDialog{
+  width: 80%;
 }
 
 .close {
@@ -262,27 +267,27 @@ nav ul li a{
 
 .modalButton
 {
-  color: black;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
+  font: bold 15px Arial;
   text-decoration: none;
+  background: rgba(217, 188, 188, 0.5);
+  color: #333333;
+  padding: 8px 16px 8px 16px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
 }
-
 
 /* Media Queries */
 @media (max-width : 1100px){
   body{
     background-image: url("../images/ocean.jpg");
-    background-size: 238%, 120%, auto;
+    background-size: 255%, 120%, auto;
   }
   #leftSide{
     width: 100%;
   }
   #rightSide{
-    width: 100%;
-  }
-  #rightSide ul li{
     width: 100%;
   }
 }

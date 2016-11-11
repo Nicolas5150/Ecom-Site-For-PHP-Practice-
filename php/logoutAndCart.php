@@ -2,7 +2,7 @@
 echo "<li><a href=\"#\">".$_SESSION['userDetails'][0]." cart</a></li>";
 
 echo "
-  <li><a href=\"#openInfoModal\" class=\"modalButton\">User Info</a></li>
+  <li><a href=\"#openInfoModal\" >User Info</a></li>
   <div id=\"openInfoModal\" class=\"modalDialog\">
     <a href=\"#close\" title=\"Close\" class=\"close\">X</a>
     <div id=\"infoDetails\">
@@ -20,7 +20,7 @@ echo "
   </div>";
 
 echo "
-  <li><a href=\"#openLoginModal\" class=\"modalButton\">Logout</a></li>
+  <li><a href=\"#openLoginModal\" >Logout</a></li>
   <div id=\"openLoginModal\" class=\"modalDialog\">
     <a href=\"#close\" title=\"Close\" class=\"close\">X</a>
     <div id=\"loginDetails\">
