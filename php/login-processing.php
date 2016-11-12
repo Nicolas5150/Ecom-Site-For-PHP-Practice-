@@ -65,10 +65,10 @@ if (!empty($_POST['Username']) && !empty($_POST['Password']))
 			}
 		}
 	}
+	// 4 Close connection
+	$access->dissconnect();
 }
 // Gets here if one of the boxes are unfilled or if less than 5 attempts are made
-// 4 Close connection
-$access->dissconnect();
 header("Location: http://sulley.cah.ucf.edu/~ni927795/dig3134/NicsEcom/php/login.php#openLoginModal");
 
 
